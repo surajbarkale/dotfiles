@@ -1,0 +1,48 @@
+{{- if (index . "git") }}
+[user]
+    name = {{ .git.username | quote }}
+    email = {{ .git.useremail | quote }}
+{{- end }}
+
+[core]
+editor = "code --wait --new-window"
+
+[color]
+ui = "auto"
+
+[init]
+defaultBranch = "main"
+
+[push]
+default = "simple"
+
+[fetch]
+prune = true
+pruneTags = true
+
+[pull]
+rebase = true
+
+[merge]
+tool = vscode
+
+[mergetool "vscode"]
+cmd = code --wait $MERGED
+keepBackup = false
+
+[rebase]
+autoStash = true
+autoSquash = true
+
+[alias]
+br = "branch"
+sw = "switch"
+ci = "commit"
+co = "checkout"
+lg = "log --graph --decorate --pretty=oneline --abbrev-commit"
+
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

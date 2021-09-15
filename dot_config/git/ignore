@@ -1,0 +1,5 @@
+*~
+.DS_Store
+.envrc
+shell.nix
+.bundle/
